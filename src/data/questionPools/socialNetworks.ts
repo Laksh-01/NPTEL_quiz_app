@@ -1086,6 +1086,530 @@ export const socialNetworksQuestions: Question[] = [
     explanation: 'Stable coalitions often correspond to balanced partitions in the network, where members within a coalition have positive ties, and ties between different coalitions are negative.',
     topics: ['Coalition Formation', 'Structural Balance Theory', 'Signed Networks', 'Stability', 'Week 5']
   },
+  {
+    id: 'powerlaw-w9-q1',
+    text: 'A dataset follows a power-law distribution if:',
+    options: [
+      'A small number of observations account for a large proportion of the total magnitude or frequency (heavy tails).',
+      'The data is symmetric and bell-shaped.', // Describes normal distribution
+      'The probability of extreme values is negligible.', // Opposite of power law
+      'The distribution always has a finite upper bound.' // Not necessarily true for power laws
+    ],
+    correctAnswer: 0,
+    explanation: 'Power laws describe phenomena where a few items (e.g., cities, websites, words) dominate in size or frequency, leading to a "heavy tail" where extreme values are more common than in exponential or normal distributions.',
+    topics: ['Power Law', 'Distributions', 'Heavy Tails', 'Week 9']
+  },
+  {
+    id: 'powerlaw-w9-q2',
+    text: 'Which of the following functions best represents a power-law probability distribution P(x) for large x?',
+    options: [
+      'P(x) ∼ e^(-λx)', // Exponential distribution
+      'P(x) ∼ x^(-α) where α > 0', // Power-law distribution
+      'P(x) ∼ (1 / sqrt(2πσ²)) * e^(-(x-μ)² / (2σ²))', // Normal (Gaussian) distribution
+      'P(x) = mx + c' // Linear function (not a probability distribution over unbounded range)
+    ],
+    correctAnswer: 1,
+    explanation: 'A power law describes a relationship where the probability (or frequency) P(x) of observing a value x decreases as a power of x, specifically P(x) is proportional to x raised to a negative exponent (-α).',
+    topics: ['Power Law', 'Distributions', 'Mathematical Functions', 'Week 9']
+  },
+  {
+    id: 'normal-w9-q3',
+    text: 'Why do normal (Gaussian) distributions commonly appear in measurements of natural and social systems?',
+    options: [
+      'They often result from the summation or averaging of many small, independent random factors (Central Limit Theorem).',
+      'They are the only distribution found in financial systems.', // Financial returns often have heavier tails
+      'They arise when data is generated from a single, deterministic source.',
+      'They only appear in perfectly symmetric datasets.'
+    ],
+    correctAnswer: 0,
+    explanation: 'The Central Limit Theorem (CLT) provides a fundamental reason: the sum or average of a large number of independent and identically distributed random variables tends toward a normal distribution, regardless of the original distribution of the variables.',
+    topics: ['Normal Distribution', 'Central Limit Theorem', 'Distributions', 'Week 9']
+  },
+  {
+    id: 'normalvspower-w9-q4',
+    text: 'If a process follows a normal distribution rather than a power law, which characteristic is *not* expected?',
+    options: [
+      'Long-tailed or heavy-tailed distribution (extreme values are relatively common).', // Characteristic of power laws
+      'A well-defined mean and standard deviation that effectively characterize the distribution.',
+      'Symmetry around the mean value.',
+      'Predictable probability intervals (e.g., the 68-95-99.7 rule).'
+    ],
+    correctAnswer: 0,
+    explanation: 'Normal distributions have exponentially decaying tails, meaning extreme events are very rare. Power laws are characterized by "heavy" or "long" tails, where extreme events are significantly more probable.',
+    topics: ['Normal Distribution', 'Power Law', 'Distributions', 'Heavy Tails', 'Comparison', 'Week 9']
+  },
+  {
+    id: 'wwwdist-w9-q5',
+    text: 'The observation that the degree distribution of the World Wide Web (WWW) approximates a power-law implies that:',
+    options: [
+      'A small number of websites (hubs) have an extremely large number of incoming/outgoing links, while most websites have very few links.',
+      'All websites have approximately the same number of links.', // Would be a regular graph or delta distribution
+      'Websites are connected randomly with uniform probability (like an Erdős-Rényi graph).', // Leads to Poisson/normal-like distribution
+      'The link structure of the WWW graph follows a normal distribution.'
+    ],
+    correctAnswer: 0,
+    explanation: 'A power-law degree distribution is the hallmark of a scale-free network. In the context of the WWW, it means most pages have few links, but a few "hub" pages are extremely well-connected, dominating the network structure.',
+    topics: ['Power Law', 'Scale-Free Networks', 'Web Graph', 'Degree Distribution', 'Hubs', 'Week 9']
+  },
+  {
+    id: 'webattach-w9-q6',
+    text: 'In models explaining the power-law degree distribution of the web graph (like the Barabási-Albert model), how does a new page typically choose which existing pages to link to?',
+    options: [
+      'It is equally likely to link to any existing page (random attachment).',
+      'It has a higher probability of linking to an existing page that already has a high degree (preferential attachment).',
+      'It is more likely to link to a randomly chosen low-degree page.',
+      'It distributes its links according to a Gaussian probability based on existing page degrees.'
+    ],
+    correctAnswer: 1,
+    explanation: 'The preferential attachment mechanism ("rich-get-richer" or "cumulative advantage") posits that new nodes are more likely to connect to nodes that are already well-connected, leading to the emergence of hubs and a power-law distribution.',
+    topics: ['Power Law', 'Scale-Free Networks', 'Preferential Attachment', 'Web Graph', 'Network Growth Models', 'Week 9']
+  },
+  {
+    id: 'verifypower-w9-q7',
+    text: 'A common graphical method to check if a dataset might follow a power-law distribution is to:',
+    options: [
+      'Plot the frequency (or complementary cumulative distribution) on a log-log scale and look for an approximately straight-line relationship.',
+      'Compute the mean and standard deviation and see if they are finite.', // Power laws may have infinite variance/mean
+      'Plot the data on a linear scale and fit a normal distribution curve to check for symmetry.',
+      'Apply the Central Limit Theorem to see if it converges to a normal distribution.'
+    ],
+    correctAnswer: 0,
+    explanation: 'If P(x) ≈ cx⁻ᵃ, then log(P(x)) ≈ log(c) - α log(x). Plotting log(P(x)) versus log(x) yields a linear relationship with slope -α. This log-log plot linearity is a key visual indicator (though formal statistical tests are better for confirmation).',
+    topics: ['Power Law', 'Data Analysis', 'Log-Log Plot', 'Distributions', 'Verification', 'Week 9']
+  },
+  {
+    id: 'richgetricher-w9-q8',
+    text: 'The “Rich-Get-Richer” phenomenon in network growth is a characteristic feature of:',
+    options: [
+      'Random attachment models (like Erdős-Rényi).',
+      'Preferential attachment models.',
+      'Models leading to normal degree distributions.',
+      'Models based purely on geographic proximity.'
+    ],
+    correctAnswer: 1,
+    explanation: '"Rich-get-richer" is the intuitive description of preferential attachment: nodes that already have many connections (are "rich" in links) are more likely to attract new connections.',
+    topics: ['Preferential Attachment', 'Network Growth Models', 'Scale-Free Networks', 'Mechanism', 'Week 9']
+  },
+  {
+    id: 'ba-model-w9-q9',
+    text: 'The Barabási-Albert (BA) model, which combines network growth and preferential attachment, typically generates networks that:',
+    options: [
+      'Follow a Poisson or Normal degree distribution.',
+      'Are scale-free, characterized by a power-law degree distribution.',
+      'Have a structure where nodes only connect to their nearest neighbors (like a lattice).',
+      'Have a constant average degree over time.'
+    ],
+    correctAnswer: 1,
+    explanation: 'The BA model was specifically proposed to explain the origin of power-law degree distributions observed in many real-world networks. Its two key ingredients, growth and preferential attachment, naturally lead to scale-free structures.',
+    topics: ['Barabási-Albert Model', 'Scale-Free Networks', 'Power Law', 'Network Growth Models', 'Week 9']
+  },
+  {
+    id: 'scalefreerobust-w9-q10',
+    text: 'How does the robustness of a scale-free network differ from a random (Erdős-Rényi) network when facing targeted attacks on high-degree nodes versus random node failures?',
+    options: [
+      'Scale-free networks are highly vulnerable to targeted attacks on hubs but relatively resilient to random failures; random networks show more gradual degradation in both cases.',
+      'Both network types exhibit similar robustness characteristics under both attack types.',
+      'Random networks collapse faster than scale-free networks under targeted attacks on hubs.', // Incorrect
+      'Scale-free networks are more resilient than random networks under targeted attacks on hubs.' // Incorrect
+    ],
+    correctAnswer: 0,
+    explanation: 'Scale-free networks have an "Achilles\' heel": their hubs. Removing hubs (targeted attack) quickly disconnects the network. However, randomly removing nodes is likely to hit low-degree nodes, having less impact. Random networks lack these critical hubs, making them less vulnerable to targeted attacks but also less resilient to random failures compared to the scale-free case.',
+    topics: ['Scale-Free Networks', 'Network Robustness', 'Targeted Attack', 'Random Failure', 'Comparison', 'Week 9']
+  },
+  // Week 11 Questions (Small World, Milgram, Watts-Strogatz, Kleinberg Search)
+  {
+    id: 'smallworld-w11-q1',
+    text: 'The Small World Effect suggests that the average shortest path length (L) between any two people in a large network (N nodes) is typically:',
+    options: [
+      'Proportional to the size of the network (L ~ N)',
+      'Proportional to the logarithm of the network size (L ~ log N)',
+      'Independent of the network size (L ~ constant)',
+      'Proportional to the square root of the network size (L ~ sqrt(N))'
+    ],
+    correctAnswer: 1,
+    explanation: 'A key feature of small-world networks is that the average distance between nodes grows very slowly (logarithmically) with the total number of nodes, making navigation surprisingly efficient even in massive networks.',
+    topics: ['Small World Effect', 'Average Path Length', 'Network Scaling', 'Week 11']
+  },
+  {
+    id: 'milgram-w11-q2',
+    text: 'In Stanley Milgram’s Small World Experiment, what was the key quantitative observation about the path length between two randomly selected individuals in the US?',
+    options: [
+      'Most people were directly connected (path length 1).',
+      'The average chain length for completed letters was around 6 steps ("degrees of separation").',
+      'Only a very small fraction of people were reachable through chains.',
+      'The experiment conclusively proved the small-world phenomenon exists identically in all types of networks.'
+    ],
+    correctAnswer: 1,
+    explanation: 'Milgram\'s experiment provided empirical evidence for the small-world phenomenon, finding that messages could reach their target through social ties in a median of 5.5 to 6 steps, popularizing the phrase "six degrees of separation".',
+    topics: ['Small World Effect', 'Milgram Experiment', 'Six Degrees of Separation', 'Empirical Study', 'Week 11']
+  },
+  {
+    id: 'milgramlimit-w11-q3',
+    text: 'What was a significant limitation noted in Milgram’s original small-world experiment?',
+    options: [
+      'The study population was limited geographically (starting points in Omaha/Wichita, target in Boston).',
+      'A large fraction of the initiated letter chains never reached the final destination (high attrition rate).',
+      'The initial participants were not selected entirely randomly from the population.',
+      'All of the above are recognized limitations.'
+    ],
+    correctAnswer: 3,
+    explanation: 'Milgram\'s pioneering study faced several methodological challenges, including geographic bias, high message attrition (only about 20-30% completed), and potential biases in participant selection and forwarding behavior, which affect the generalizability of the precise "6 degrees" figure.',
+    topics: ['Milgram Experiment', 'Methodology', 'Limitations', 'Attrition', 'Bias', 'Week 11']
+  },
+  {
+    id: 'smallworldsearch-w11-q4',
+    text: 'Which structural characteristic(s) of a network are considered crucial for enabling both the small-world effect (short paths exist) and efficient decentralized search (finding short paths using only local information)?',
+    options: [
+      'High clustering coefficient (nodes\' friends know each other).',
+      'Short average path length (global property).',
+      'A scale-free degree distribution (presence of hubs).',
+      'Both high clustering (A) and short average path length (B).'
+    ],
+    correctAnswer: 3, // Corresponds to "Both A and B"
+    explanation: 'Small-world networks, as defined by Watts and Strogatz, exhibit both high local clustering (like regular lattices) and short global average path lengths (like random graphs). Kleinberg further showed that a specific structure combining local and long-range links is needed for efficient decentralized search.',
+    topics: ['Small World Effect', 'Decentralized Search', 'Clustering Coefficient', 'Average Path Length', 'Network Properties', 'Week 11']
+  },
+  {
+    id: 'wattsstrogatz-w11-q5',
+    text: 'The Watts-Strogatz model generates networks exhibiting small-world properties. What is the key mechanism or operation used in this model?',
+    options: [
+      'Preferentially adding edges between distant nodes based on degree.',
+      'Starting with a regular ring lattice and randomly rewiring a fraction (p) of the edges to create shortcuts.',
+      'Starting with a fully connected graph and removing edges based on betweenness centrality.',
+      'Implementing growth and preferential attachment to force hubs to emerge.' // This is the Barabási-Albert model
+    ],
+    correctAnswer: 1,
+    explanation: 'The Watts-Strogatz model interpolates between a regular lattice (high clustering, long paths) and a random graph (low clustering, short paths) by randomly rewiring edges with probability p. Intermediate values of p yield networks with both high clustering and short paths.',
+    topics: ['Watts-Strogatz Model', 'Small World Networks', 'Network Generation', 'Rewiring', 'Week 11']
+  },
+  {
+    id: 'wattsstrogatz-p-w11-q6',
+    text: 'In the Watts-Strogatz model, what happens to the network structure as the rewiring probability (p) increases from 0 towards 1?',
+    options: [
+      'The network transitions from regular towards random, causing the average path length to decrease significantly while clustering decreases more slowly at first.',
+      'The clustering coefficient increases continuously.',
+      'The network remains structurally similar to the initial regular lattice.',
+      'The network rapidly becomes disconnected.' // Disconnection is unlikely unless p=1 and the graph is sparse
+    ],
+    correctAnswer: 0,
+    explanation: 'Increasing p introduces random shortcuts ("weak ties") that drastically shorten the average path length across the network. The local clustering coefficient remains high for small p but eventually drops as the network loses its local lattice structure and approaches a random graph.',
+    topics: ['Watts-Strogatz Model', 'Rewiring Probability', 'Average Path Length', 'Clustering Coefficient', 'Phase Transition', 'Week 11']
+  },
+  {
+    id: 'wattsstrogatzvsrandom-w11-q7',
+    text: 'Which characteristic primarily distinguishes Watts-Strogatz small-world networks (for intermediate rewiring probability p) from purely random (Erdős-Rényi) graphs of similar size and density?',
+    options: [
+      'Their combination of high clustering coefficient and short average path length.',
+      'Their combination of low clustering coefficient and short average path length.', // Characteristic of random graphs
+      'Their degree distribution always follows a power law.', // Not typical for WS model, more like BA model
+      'Their structure is always scale-free.' // Not guaranteed by the WS model
+    ],
+    correctAnswer: 0,
+    explanation: 'While both random graphs and WS small-world networks have short average path lengths, random graphs typically have very low clustering. The key feature of WS networks is retaining high clustering (a property of regular lattices) while achieving short path lengths (a property of random graphs).',
+    topics: ['Watts-Strogatz Model', 'Random Graphs', 'Small World Networks', 'Clustering Coefficient', 'Average Path Length', 'Comparison', 'Week 11']
+  },
+  {
+    id: 'kleinberg-w11-q8',
+    text: 'In Jon Kleinberg’s model explaining efficient decentralized search in networks with an underlying structure (like a grid), what characteristic of the long-range connections is crucial?',
+    options: [
+      'The probability of forming a long-range link is purely random, independent of distance.',
+      'The probability of forming a long-range link is directly proportional to the geographic distance.',
+      'The probability of forming a long-range link between nodes decreases with distance (d) according to an inverse power law ( P(d) ~ d⁻ʳ ), where r matches the dimension of the grid.',
+      'No additional long-range links are needed beyond the local grid connections.'
+    ],
+    correctAnswer: 2,
+    explanation: 'Kleinberg mathematically proved that decentralized search algorithms (using only local information) can find short paths efficiently only if the probability of long-range connections decays as a specific power law of the distance, balanced between reaching far enough and providing enough local density.',
+    topics: ['Kleinberg Model', 'Decentralized Search', 'Navigable Networks', 'Power Law', 'Distance', 'Routing', 'Week 11']
+  },
+  {
+    id: 'searchrandom-w11-q9',
+    text: 'Why is decentralized search generally considered difficult or inefficient in standard random (Erdős-Rényi) networks?',
+    options: [
+      'Nodes lack local information or cues (like geographic proximity or social similarity reflected in links) to effectively guide greedy routing towards the target.',
+      'The clustering coefficient is typically too high, trapping search paths locally.', // Clustering is low in random graphs
+      'Random networks inherently have too many long shortcuts, making navigation confusing.', // Shortcuts exist, but lack structure for navigation
+      'Random networks are mathematically proven to never form hubs needed for efficient search.', // Hubs aren't the key issue here; lack of navigable structure is.
+    ],
+    correctAnswer: 0,
+    explanation: 'In a random graph, links are structureless. A node has no local knowledge indicating which neighbor is "closer" to a distant target in any meaningful sense. Without some underlying structure (like Kleinberg\'s grid with power-law links), greedy algorithms fail.',
+    topics: ['Decentralized Search', 'Random Graphs', 'Navigation', 'Routing', 'Network Structure', 'Limitations', 'Week 11']
+  },
+  {
+    id: 'kleinbergapps-w11-q10',
+    text: 'Which real-world phenomenon or system can Kleinberg’s model of decentralized search help to explain or provide insights into?',
+    options: [
+      'How humans navigate their social networks to find specific individuals (similar to Milgram\'s experiment).',
+      'The potential mechanisms underlying the efficient spread of information or rumors through certain social structures.',
+      'Design principles for efficient routing in peer-to-peer (P2P) networks where nodes have limited global knowledge.',
+      'All of the above.'
+    ],
+    correctAnswer: 3, // Corresponds to "All of the above"
+    explanation: 'Kleinberg\'s work has broad implications. It provides a theoretical basis for understanding how decentralized systems (social networks, P2P systems, potentially even information diffusion) can achieve efficient global navigation or search using only local information, given the right network structure.',
+    topics: ['Kleinberg Model', 'Decentralized Search', 'Applications', 'Social Networks', 'P2P Networks', 'Information Diffusion', 'Week 11']
+  },// Week 10 Questions (Preferential Attachment, Epidemics, Robustness)
+  {
+    id: 'prefattach-w10-q1',
+    text: 'In a growing scale-free network model using preferential attachment, the probability that a new node connects to an existing node i is proportional to:',
+    options: [
+      'The square of the node’s current degree (kᵢ²)',
+      'The reciprocal of the node’s current degree (1/kᵢ)',
+      'The logarithm of the node’s current degree (log kᵢ)',
+      'The node’s current degree (kᵢ)'
+    ],
+    correctAnswer: 3,
+    explanation: 'The core mechanism of preferential attachment is that the probability Π(kᵢ) of a new node connecting to node i is directly proportional to the degree kᵢ of that node: Π(kᵢ) = kᵢ / Σⱼkⱼ. This is the "rich-get-richer" rule.',
+    topics: ['Preferential Attachment', 'Scale-Free Networks', 'Network Growth Models', 'Degree', 'Week 10']
+  },
+  {
+    id: 'prefattach-dist-w10-q2',
+    text: 'In a network growing via preferential attachment (like the Barabási-Albert model), what typically happens to the degree distribution as the network grows large?',
+    options: [
+      'It follows a power-law distribution, characterized by many low-degree nodes and a few high-degree hubs.',
+      'It approaches a normal (Gaussian) distribution with most nodes having a degree close to the average.',
+      'The network stabilizes with a fixed number of high-degree nodes, and others remain low degree.',
+      'The degree distribution converges to a Poisson distribution, typical of random graphs.'
+    ],
+    correctAnswer: 0,
+    explanation: 'Preferential attachment inherently leads to the formation of hubs and results in a scale-free network structure, whose degree distribution follows a power law P(k) ~ k⁻ᵞ (typically with γ around 3 for the basic BA model).',
+    topics: ['Preferential Attachment', 'Scale-Free Networks', 'Power Law', 'Degree Distribution', 'Barabási-Albert Model', 'Week 10']
+  },
+  {
+    id: 'epidemic-sf-w10-q3',
+    text: 'In a random network, disease spread might follow a classic percolation model. What additional factor makes epidemic spreading potentially more dangerous or faster in a scale-free network compared to a random network of similar size/density?',
+    options: [
+      'The presence of high-degree hubs, which can act as super-spreaders, rapidly transmitting the disease to many others.',
+      'The clustering coefficient is typically higher in scale-free networks, effectively preventing transmission between communities.', // Clustering can sometimes slow global spread, but hubs dominate.
+      'Scale-free networks have a fixed, small diameter, which limits the total extent of the spread.', // Small diameter facilitates spread.
+      'The degree distribution follows a Poisson distribution in scale-free networks, reducing overall risk.' // Poisson is for random graphs.
+    ],
+    correctAnswer: 0,
+    explanation: 'Hubs in scale-free networks provide shortcuts for diseases. Infecting a hub leads to rapid transmission to a large number of neighbors, significantly accelerating the epidemic compared to the more homogeneous structure of random networks.',
+    topics: ['Epidemic Spreading', 'Scale-Free Networks', 'Hubs', 'Super-spreaders', 'Network Structure', 'Week 10']
+  },
+  {
+    id: 'epidemic-r0-w10-q4',
+    text: 'How does network structure, particularly the degree distribution, affect the basic reproductive number (R₀) or the epidemic threshold of a disease?',
+    options: [
+      'In scale-free networks with high degree variance (heterogeneity), the effective R₀ can be much higher, and the epidemic threshold can be vanishingly small, meaning epidemics can start easily.',
+      'In random networks, R₀ is always greater than 1, guaranteeing an epidemic.', // R0 depends on disease/network properties, not always > 1.
+      'In regular lattice-based networks, R₀ is typically exponentially high due to structured connectivity.', // Spread is often slower in lattices.
+      'Network structure has no fundamental effect on R₀ or the epidemic threshold.' // Structure is critical.
+    ],
+    correctAnswer: 0,
+    explanation: 'The heterogeneity of scale-free networks (high variance in degree) significantly impacts epidemic dynamics. The presence of hubs means even a low overall transmission probability can lead to sustained outbreaks, effectively lowering or eliminating the epidemic threshold observed in homogeneous networks.',
+    topics: ['Epidemic Spreading', 'Scale-Free Networks', 'Basic Reproductive Number (R0)', 'Epidemic Threshold', 'Heterogeneity', 'Week 10']
+  },
+  {
+    id: 'epidemic-control-w10-q5',
+    text: 'If an epidemic is spreading rapidly in a scale-free network, which public health intervention strategy is likely to be most effective based on network structure?',
+    options: [
+      'Randomly vaccinating or isolating 50% of the population.',
+      'Isolating nodes with the highest local clustering coefficient.',
+      'Targeted vaccination or isolation of the highest-degree nodes (hubs).',
+      'Uniformly reducing the number of contacts (edges) per node across the population.'
+    ],
+    correctAnswer: 2,
+    explanation: 'Since hubs play a critical role in spreading diseases through scale-free networks, targeting these high-degree nodes for vaccination or isolation is disproportionately effective at disrupting transmission pathways and controlling the epidemic.',
+    topics: ['Epidemic Control', 'Scale-Free Networks', 'Targeted Intervention', 'Vaccination Strategy', 'Hubs', 'Week 10']
+  },
+  {
+    id: 'sirvssis-w10-q6',
+    text: 'What is the key difference in assumptions between the SIR (Susceptible-Infected-Recovered) and SIS (Susceptible-Infected-Susceptible) models of epidemics that leads to different long-term dynamics?',
+    options: [
+      'SIR models assume individuals gain permanent immunity after recovery (or die), preventing reinfection, while SIS models assume individuals become susceptible again after recovery.',
+      'SIS models always lead to complete disease eradication eventually, while SIR models often result in endemic states.', // Often the opposite is true.
+      'SIR models require a fixed network topology for analysis, while SIS models are more flexible.', // Both can be analyzed on networks.
+      'In SIS models, the disease can persist indefinitely even if R₀ < 1.', // Persistence in SIS typically requires R0 > 1 (or effective R0 > 1).
+    ],
+    correctAnswer: 0,
+    explanation: 'The defining difference is the state transition after infection. In SIR, individuals enter a permanent Removed state (R), limiting the epidemic\'s duration. In SIS, individuals return to the Susceptible state (S), allowing for reinfection and potentially endemic persistence of the disease.',
+    topics: ['Epidemic Models', 'SIR Model', 'SIS Model', 'Comparison', 'Immunity', 'Reinfection', 'Week 10']
+  },
+  {
+    id: 'percolation-w10-q7',
+    text: 'In network science, applying percolation theory to epidemics involves modeling interventions like vaccination or node removal. What does the percolation threshold represent in this context?',
+    options: [
+      'The critical fraction of nodes or edges that must be removed (e.g., vaccinated or quarantined) to break the network into small disconnected components, thereby preventing a large-scale epidemic.',
+      'The average time it takes for the entire network to become infected once an epidemic starts.',
+      'The final percentage of the population that needs to be vaccinated to achieve herd immunity.', // Related concept, but threshold is about fragmentation.
+      'The minimum average degree required in the network to sustain an epidemic spread.'
+    ],
+    correctAnswer: 0,
+    explanation: 'The percolation threshold is the critical point at which removing nodes or edges causes the network to lose its large connected component (the "giant component"). In epidemic terms, reaching this threshold means interventions have successfully fragmented the network enough to stop widespread transmission.',
+    topics: ['Percolation Theory', 'Epidemic Threshold', 'Network Robustness', 'Vaccination', 'Intervention', 'Week 10']
+  },
+  {
+    id: 'robustness-attack-w10-q8',
+    text: 'When analyzing network robustness, how does the impact of random node failures typically differ from targeted attacks on high-degree nodes, especially in scale-free networks?',
+    options: [
+      'Scale-free networks are relatively robust to random failures (most nodes have low degree) but highly vulnerable to targeted attacks on hubs, which quickly fragment the network.',
+      'Scale-free networks collapse at roughly the same rate under both random failures and targeted attacks.',
+      'Removing low-degree nodes randomly has a more severe impact on network connectivity than removing hubs.', // Opposite is true.
+      'The dynamics of network fragmentation under random node failures and targeted attacks follow identical percolation thresholds and patterns.' // Thresholds differ significantly.
+    ],
+    correctAnswer: 0,
+    explanation: 'This highlights the "Achilles\' heel" of scale-free networks. Random failures likely hit unimportant nodes, preserving connectivity. Targeted removal of the few vital hubs rapidly degrades network integrity. Random networks lack these critical hubs and degrade more gracefully under attack but are less robust to random failure.',
+    topics: ['Network Robustness', 'Scale-Free Networks', 'Targeted Attack', 'Random Failure', 'Percolation', 'Vulnerability', 'Week 10']
+  },
+  {
+    id: 'branching-extinct-w10-q9',
+    text: 'In a simple branching process model representing the initial phase of an epidemic (where each infected individual infects a random number of others with average R₀), what is the approximate probability (P_extinction) that the epidemic dies out quickly (starting from one infected individual)?',
+    options: [
+      'P_extinction ≈ 1 / R₀, if R₀ > 1', // Specific result/approximation
+      'P_extinction ≈ 1 - (1 / R₀), if R₀ > 1', // Probability of major outbreak
+      'P_extinction = e^(-R₀)', // Related to Poisson approximation
+      'Epidemics always spread indefinitely in simple branching models if R₀ > 0.' // Incorrect, extinction is possible.
+    ],
+    // Using the provided answer, despite potential nuances for exact distribution.
+    correctAnswer: 0,
+    explanation: 'Branching processes model stochastic spread. Even if the average number of secondary infections R₀ is greater than 1, there\'s a non-zero chance the chain of infections dies out by random chance. For R₀ > 1, this extinction probability is less than 1 and related to R₀ (approximately 1/R₀ in some cases). If R₀ ≤ 1, extinction is certain (P_extinction = 1).',
+    topics: ['Branching Process', 'Epidemic Models', 'Extinction Probability', 'Stochastic Models', 'R0', 'Week 10']
+  },
+  {
+    id: 'epidemic-resistance-w10-q10',
+    text: 'Considering typical structures, which network type is generally most resistant to the *initial* rapid spread of an epidemic, assuming transmission occurs only between connected neighbors?',
+    options: [
+      'Scale-free networks (due to hubs facilitating rapid spread)',
+      'Random graphs (relatively fast spread due to short paths)',
+      'Regular lattice-based networks (spread is often slower, constrained by local structure and longer paths)',
+      'Small-world networks (short paths allow rapid spread, similar to random graphs)'
+    ],
+    correctAnswer: 2,
+    explanation: 'In regular lattices (like grids), nodes have limited, structured connections. Path lengths are generally longer, and there are no long-range shortcuts or hubs. This topology inherently slows down the spatial progression of an epidemic compared to networks with random links or hubs.',
+    topics: ['Epidemic Spreading', 'Network Structure', 'Lattices', 'Resistance', 'Comparison', 'Week 10']
+  },
+  {
+    id: 'myopic-w12-q1',
+    text: 'In myopic search, how does an agent decide the next step in the search process?',
+    options: [
+      'By looking ahead multiple steps and computing the best path',
+      'By making decisions based only on immediate local information (e.g., choosing the neighbor closest to the target)',
+      'By randomly selecting a path at each step',
+      'By following a predefined shortest path algorithm like Dijkstra\'s'
+    ],
+    correctAnswer: 1,
+    explanation: 'Myopic search strategies are greedy; they make the choice that looks best at the current step based on local information, without considering the potential long-term consequences or optimality of the overall path.',
+    topics: ['Myopic Search', 'Local Information', 'Greedy Algorithm', 'Search Strategy', 'Week 12']
+  },
+  {
+    id: 'myopic-eff-w12-q2',
+    text: 'How does myopic search generally compare to optimal search (like BFS for unweighted paths) in terms of path efficiency?',
+    options: [
+      'Myopic search always finds the globally shortest path.',
+      'Myopic search can get stuck in local optima or follow longer paths because it lacks global knowledge.',
+      'Myopic search always runs faster than optimal search algorithms in all types of networks.', // Not always true, depends on implementation/network.
+      'Myopic search typically requires more computational resources due to backtracking.' // It often requires less computation per step.
+    ],
+    correctAnswer: 1,
+    explanation: 'The primary drawback of myopic search is its potential suboptimality. By focusing only on local gains, it might miss shortcuts or get trapped in regions of the network from which the optimal path is inaccessible.',
+    topics: ['Myopic Search', 'Optimal Search', 'Suboptimality', 'Local Minima', 'Efficiency Comparison', 'Week 12']
+  },
+  {
+    id: 'myopic-complex-w12-q3',
+    text: 'The time complexity (or number of steps taken) of a myopic search in a network depends significantly on:',
+    options: [
+      'The network size (number of nodes/edges) and the degree distribution (choices available at each step).',
+      'Only the number of hubs present in the network.',
+      'Primarily the presence or absence of long-range connections.',
+      'Mainly the average clustering coefficient of the network.'
+    ],
+    correctAnswer: 0,
+    explanation: 'The path length and the work done at each step are influenced by the overall size of the network and how many neighbors (degree) a typical node has, which determines the options evaluated locally.',
+    topics: ['Myopic Search', 'Time Complexity', 'Network Properties', 'Network Size', 'Degree Distribution', 'Week 12']
+  },
+  {
+    id: 'myopic-speed-w12-q4',
+    text: 'What often makes myopic search computationally faster per step compared to exhaustive search methods in large networks?',
+    options: [
+      'It effectively prunes the search space by not exploring paths that don\'t look locally promising.',
+      'It guarantees visiting all relevant nodes more efficiently.', // Doesn't guarantee visiting all nodes.
+      'It requires precomputing all possible shortest paths.', // Optimal methods might, myopic doesn't.
+      'It uses global information to guide the search more directly.' // It uses local information.
+    ],
+    correctAnswer: 0,
+    explanation: 'Myopic search avoids the combinatorial explosion of exploring all possible paths or maintaining large data structures (like BFS queues for the entire frontier). It makes a quick local decision and moves on, pruning branches implicitly.',
+    topics: ['Myopic Search', 'Exhaustive Search', 'Computational Speed', 'Efficiency', 'Pruning', 'Week 12']
+  },
+  {
+    id: 'viral-w12-q5',
+    text: 'Which network property is often considered most important for enabling something (information, disease, behavior) to go "viral" by spreading widely across different groups?',
+    options: [
+      'High clustering coefficient (local density)', // Can trap spread within groups.
+      'Presence of weak ties acting as bridges between otherwise disconnected clusters.',
+      'A large number of triangles (closed triads) in the network.', // Relates to clustering.
+      'A high number of separate connected components.' // Prevents widespread diffusion.
+    ],
+    correctAnswer: 1,
+    explanation: 'As highlighted by Granovetter, weak ties often serve as bridges connecting different communities. These bridges are crucial for allowing information or influence to jump between groups and achieve widespread, viral diffusion.',
+    topics: ['Virality', 'Information Diffusion', 'Weak Ties', 'Network Structure', 'Bridges', 'Granovetter', 'Week 12']
+  },
+  {
+    id: 'viral-influence-w12-q6',
+    text: 'In a social network, if you want to start a cascade or spread information widely (maximize influence), which type of node is generally the best starting point?',
+    options: [
+      'A high-degree node (hub) that is connected to many other individuals.',
+      'A randomly chosen node within the network.',
+      'A node with very low betweenness centrality (not on many shortest paths).',
+      'A node with no outgoing edges (a sink).'
+    ],
+    correctAnswer: 0,
+    explanation: 'High-degree nodes, or hubs, have the largest immediate reach. Starting a diffusion process from a hub allows the information or behavior to potentially reach a large audience quickly, increasing the chances of triggering a cascade.',
+    topics: ['Influence Maximization', 'Hubs', 'Degree Centrality', 'Virality', 'Cascades', 'Seed Selection', 'Week 12']
+  },
+  {
+    id: 'pseudocore-def-w12-q7',
+    text: 'What is generally meant by a "pseudocore" in the analysis of network structure and diffusion?',
+    options: [
+      'A node that connects different clusters but is not itself highly connected (a bridge node).',
+      'A relatively dense and central subgraph that, while perhaps not the absolute mathematical core (like k-core), plays a key role in the network\'s overall connectivity and diffusion dynamics.',
+      'A node identified solely by having the highest betweenness centrality.',
+      'A node with low degree but surprisingly high influence (e.g., due to strategic position).'
+    ],
+    correctAnswer: 1,
+    explanation: 'A pseudocore refers to a functionally important central region of the network. It\'s a densely interconnected group of nodes that acts like a core structure, facilitating communication and potentially amplifying or sustaining diffusion processes.',
+    topics: ['Pseudocore', 'Network Structure', 'Core-Periphery', 'Information Diffusion', 'Dense Subgraphs', 'Week 12']
+  },
+  {
+    id: 'pseudocore-imp-w12-q8',
+    text: 'Why are pseudocores considered important in understanding network diffusion processes?',
+    options: [
+      'They primarily function to increase the network\'s overall clustering coefficient.',
+      'They can act as crucial intermediate stages or amplifiers for information spreading between different parts of the network, including connecting hubs or communities.',
+      'Their main role is to prevent the main network hubs from becoming overloaded.',
+      'They typically function to slow down or block the spread of information through the network.'
+    ],
+    correctAnswer: 1,
+    explanation: 'The density and centrality of pseudocores allow them to effectively receive, retain, and rebroadcast information or influence. They can act as stepping stones or reservoirs, contributing significantly to the reach and persistence of cascades.',
+    topics: ['Pseudocore', 'Information Diffusion', 'Network Structure', 'Cascades', 'Amplification', 'Week 12']
+  },
+  {
+    id: 'cascade-principle-w12-q9',
+    text: 'What is the core principle behind threshold-based cascading models (like the Linear Threshold Model) used to simulate information or behavior spread?',
+    options: [
+      'Information spreads only through the strongest available ties.',
+      'A node adopts an idea or behavior only when the fraction (or number) of its neighbors that have already adopted exceeds its personal adoption threshold.',
+      'The spread occurs instantaneously across the entire network once initiated.',
+      'The spread is guaranteed to be uniform, reaching all nodes at the same rate.'
+    ],
+    correctAnswer: 1,
+    explanation: 'These models capture the idea of social proof or peer pressure. An individual node resists adoption until enough of its neighbors have adopted, crossing a specific threshold unique to that node.',
+    topics: ['Cascading Models', 'Linear Threshold Model', 'Adoption Threshold', 'Information Diffusion', 'Collective Behavior', 'Social Influence', 'Week 12']
+  },
+  {
+    id: 'cascade-param-w12-q10',
+    text: 'When implementing a threshold-based cascading model (e.g., Linear Threshold Model) in code, what is the most critical parameter associated with each node that governs its decision to adopt?',
+    options: [
+      'The degree (number of neighbors) of the node.',
+      'The specific adoption threshold (e.g., a fraction between 0 and 1) assigned to that node.',
+      'The total number of nodes present in the network.',
+      'The diameter (longest shortest path) of the network.'
+    ],
+    correctAnswer: 1,
+    explanation: 'The simulation logic revolves around checking, for each inactive node, whether the proportion of its active neighbors meets or exceeds its individually assigned adoption threshold. This threshold value is the key determinant of adoption.',
+    topics: ['Cascading Models', 'Linear Threshold Model', 'Implementation', 'Parameters', 'Adoption Threshold', 'Week 12']
+  }
+  // ... (Keep other weeks' questions below or above this block) ...
+
 ];
 
 // Function to get a random subset of questions
