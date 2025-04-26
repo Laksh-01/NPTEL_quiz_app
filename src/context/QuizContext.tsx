@@ -1,13 +1,16 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { Question, QuizConfig, QuizResult, Subject } from '../types';
-import { getQuestionsForQuiz } from '../utils/quizUtils';
-import useLocalStorage from '../hooks/useLocalStorage';
+import React, { createContext, useContext, useState, ReactNode } from "react";
+import { Question, QuizConfig, QuizResult, Subject } from "../types";
+import { getQuestionsForQuiz } from "../utils/quizUtils";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 interface QuizContextType {
   activeQuiz: QuizConfig | null;
   questions: Question[];
   currentQuestionIndex: number;
-  answers: Record<string, { selectedOption: number | null; markedForReview: boolean }>;
+  answers: Record<
+    string,
+    { selectedOption: number | null; markedForReview: boolean }
+  >;
   timeTaken: number;
   quizResults: QuizResult[];
   startQuiz: (quiz: QuizConfig) => void;
@@ -22,13 +25,20 @@ interface QuizContextType {
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
 
-export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const QuizProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [activeQuiz, setActiveQuiz] = useState<QuizConfig | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, { selectedOption: number | null; markedForReview: boolean }>>({});
+  const [answers, setAnswers] = useState<
+    Record<string, { selectedOption: number | null; markedForReview: boolean }>
+  >({});
   const [timeTaken, setTimeTaken] = useState(0);
-  const [quizResults, setQuizResults] = useLocalStorage<QuizResult[]>('quizResults', []);
+  const [quizResults, setQuizResults] = useLocalStorage<QuizResult[]>(
+    "quizResults",
+    [],
+  );
 
   const startQuiz = (quiz: QuizConfig) => {
     const quizQuestions = getQuestionsForQuiz(quiz);
@@ -40,34 +50,34 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   const answerQuestion = (questionId: string, selectedOption: number) => {
-    setAnswers(prev => ({
+    setAnswers((prev) => ({
       ...prev,
       [questionId]: {
         selectedOption,
-        markedForReview: prev[questionId]?.markedForReview || false
-      }
+        markedForReview: prev[questionId]?.markedForReview || false,
+      },
     }));
   };
 
   const toggleReviewMark = (questionId: string) => {
-    setAnswers(prev => ({
+    setAnswers((prev) => ({
       ...prev,
       [questionId]: {
         selectedOption: prev[questionId]?.selectedOption || null,
-        markedForReview: !prev[questionId]?.markedForReview
-      }
+        markedForReview: !prev[questionId]?.markedForReview,
+      },
     }));
   };
 
   const nextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(prev => prev + 1);
+      setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
 
   const previousQuestion = () => {
     if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(prev => prev - 1);
+      setCurrentQuestionIndex((prev) => prev - 1);
     }
   };
 
@@ -79,17 +89,17 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     if (!activeQuiz) return;
 
     let correctCount = 0;
-    const quizAnswers = questions.map(question => {
+    const quizAnswers = questions.map((question) => {
       const answer = answers[question.id];
       const selectedOption = answer?.selectedOption ?? null;
       const isCorrect = selectedOption === question.correctAnswer;
       if (isCorrect) correctCount++;
-      
+
       return {
         questionId: question.id,
         selectedOption,
         isCorrect,
-        markedForReview: answer?.markedForReview || false
+        markedForReview: answer?.markedForReview || false,
       };
     });
 
@@ -101,10 +111,10 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       score: correctCount,
       totalQuestions: questions.length,
       timeTaken,
-      completedAt: new Date().toISOString()
+      completedAt: new Date().toISOString(),
     };
 
-    setQuizResults(prev => [result, ...prev]);
+    setQuizResults((prev) => [result, ...prev]);
     resetQuiz();
 
     return result;
@@ -134,7 +144,7 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         previousQuestion,
         submitQuiz,
         finishQuiz,
-        resetQuiz
+        resetQuiz,
       }}
     >
       {children}
@@ -142,10 +152,11 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   );
 };
 
-export const useQuiz = () => {
+// Separate the hook into its own named function declaration for better Fast Refresh compatibility
+export function useQuiz() {
   const context = useContext(QuizContext);
   if (context === undefined) {
-    throw new Error('useQuiz must be used within a QuizProvider');
+    throw new Error("useQuiz must be used within a QuizProvider");
   }
   return context;
-};
+}
