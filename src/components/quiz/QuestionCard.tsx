@@ -95,19 +95,34 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
                 key={index}
                 className={optionClasses}
                 onClick={() => !showAnswer && onSelectOption(index)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) =>
+                  e.key === "Enter" && !showAnswer && onSelectOption(index)
+                }
               >
                 <div className="flex items-start w-full">
                   <div className="flex items-center h-5">
+                    <div
+                      className={`h-5 w-5 rounded-full border ${isSelected ? "bg-blue-600 border-blue-600 flex items-center justify-center" : "border-gray-300 dark:border-gray-600"}`}
+                    >
+                      {isSelected && (
+                        <div className="h-2 w-2 rounded-full bg-white"></div>
+                      )}
+                    </div>
                     <input
                       type="radio"
                       checked={isSelected}
                       onChange={() => !showAnswer && onSelectOption(index)}
                       disabled={showAnswer}
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-600"
+                      className="sr-only"
+                      id={`option-${question.id}-${index}`}
                     />
                   </div>
-                  <div className="ml-3 text-sm flex-grow">
-                    <span className="font-medium text-gray-700 dark:text-gray-200">
+                  <div className="ml-3 text-base flex-grow">
+                    <span
+                      className={`font-medium ${isSelected ? "text-blue-700 dark:text-blue-300" : "text-gray-700 dark:text-gray-200"}`}
+                    >
                       {option}
                     </span>
                   </div>

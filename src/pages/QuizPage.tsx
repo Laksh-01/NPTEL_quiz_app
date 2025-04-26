@@ -25,6 +25,7 @@ const QuizPage: React.FC = () => {
     previousQuestion,
     finishQuiz,
     resetQuiz,
+    toggleReviewMark,
   } = useQuiz();
 
   const [showConfirmSubmit, setShowConfirmSubmit] = useState(false);
@@ -61,21 +62,22 @@ const QuizPage: React.FC = () => {
   }
 
   const currentQuestion = questions[currentQuestionIndex];
-  const selectedOption =
-    answers[currentQuestion.id] !== undefined
-      ? answers[currentQuestion.id]
-      : null;
+  const selectedOption = answers[currentQuestion.id]?.selectedOption || null;
+  const isMarkedForReview =
+    answers[currentQuestion.id]?.markedForReview || false;
 
   const handleSelectOption = (optionIndex: number) => {
     answerQuestion(currentQuestion.id, optionIndex);
   };
 
+  const handleToggleReview = () => {
+    toggleReviewMark(currentQuestion.id);
+  };
+
   const handleNavigate = (index: number) => {
     // Direct navigation to question
     if (index >= 0 && index < questions.length) {
-      // Force current question update
-      const questionIndex = index;
-      navigate(`/quiz/${quiz.id}?q=${questionIndex + 1}`, { replace: true });
+      setCurrentQuestionIndex(index);
     }
   };
 
@@ -90,7 +92,7 @@ const QuizPage: React.FC = () => {
   };
 
   const answeredCount = Object.values(answers).filter(
-    (ans) => ans !== null,
+    (ans) => ans.selectedOption !== null,
   ).length;
 
   return (
@@ -122,7 +124,9 @@ const QuizPage: React.FC = () => {
               <QuestionCard
                 question={currentQuestion}
                 selectedOption={selectedOption}
+                markedForReview={isMarkedForReview}
                 onSelectOption={handleSelectOption}
+                onToggleReview={handleToggleReview}
                 onPrevious={
                   currentQuestionIndex > 0 ? previousQuestion : undefined
                 }
